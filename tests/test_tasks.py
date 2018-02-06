@@ -49,7 +49,7 @@ class TasksTestCase(fake_filesystem_unittest.TestCase):
                 if dir_date > yesterday:
                     safe_paths.append(path)
 
-        cleanup_before_date('/madir', pattern, yesterday)
+        cleanup_before_date('/madir', pattern, 1)
 
         remaining_paths = list(pathlib.Path('/madir').rglob('*'))
 

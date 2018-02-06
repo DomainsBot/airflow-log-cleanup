@@ -2,10 +2,11 @@ import os
 import pathlib
 import re
 import shutil
-from datetime import date
+from datetime import date, timedelta
 
 
-def cleanup_before_date(base_folder, pattern, before_date):
+def cleanup_before_date(base_folder, pattern, days_ago):
+    before_date = date.today() - timedelta(days=days_ago)
     paths = pathlib.Path(base_folder).rglob('*')
     for path in paths:
         if path.is_dir():
