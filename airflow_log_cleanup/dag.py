@@ -2,6 +2,7 @@ from datetime import date, timedelta
 import pathlib
 
 from airflow import DAG
+from airflow.utils import dates
 from airflow.operators.python_operator import PythonOperator
 
 from airflow_log_cleanup.tasks import cleanup_before_date
@@ -11,12 +12,12 @@ DEFAULT_ARGS = {
     'email_on_retry': False,
     'retries': 3,
     'retry_delay': timedelta(minutes=30),
-    'start_date': airflow.utils.dates.days_ago(1)
+    'start_date': dates.days_ago(1)
 }
 
 
 def create_dag(
-    base_dir=pathlib.Path('~/aiflow/logs').expanduser(),
+    base_dir=pathlib.Path('~/airflow/logs').expanduser(),
     pattern=r'(?P<year>[0-9]{4})-(?P<month>[0-9]{2})-(?P<day>[0-9]{2})',
     days_ago=15,
     schedule='@daily',
