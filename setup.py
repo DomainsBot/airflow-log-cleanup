@@ -7,13 +7,12 @@ def load_requirements(req_path):
 
 setup(
     name='airflow_log_cleanup',
-    version='0.0.1',
+    version='0.0.2',
     description='Remove old airflow logs to prevent infinite growth',
     classifiers=[
         'License :: MIT',
         'Programming Language :: Python :: 3',
         'Operating System :: POSIX :: Linux',
-        'Topic :: Internet'
     ],
     keywords='airflow, maintenance, logs, cleanup',
     url='https://github.com/DomainsBot/airflow-log-cleanup',
