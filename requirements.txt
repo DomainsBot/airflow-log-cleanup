@@ -1,1 +1,3 @@
-apache-airflow
+# A complicated set of constraints is needed to prevent breaking
+# Airflow. Instead of replicating, install elsewhere.
+#apache-airflow
