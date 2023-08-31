@@ -33,7 +33,7 @@ class TasksTestCase(fake_filesystem_unittest.TestCase):
         ]
 
         for _file in files:
-            self.fs.CreateFile(base_dir + _file)
+            self.fs.create_file(base_dir + _file)
 
         safe_paths = []
         for path in pathlib.Path(base_dir).rglob('*'):
