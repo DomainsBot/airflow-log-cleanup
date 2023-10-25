@@ -1,9 +1,9 @@
-from datetime import date, timedelta
+from datetime import timedelta
 import pathlib
 
 from airflow import DAG
 from airflow.utils import dates
-from airflow.operators.python_operator import PythonOperator
+from airflow.operators.python import PythonOperator
 
 from airflow_log_cleanup.tasks import cleanup_before_date
 
@@ -25,7 +25,7 @@ def create_dag(
 ):
     dag = DAG(
         dag_id='airflow_log_cleanup',
-        default_args=DEFAULT_ARGS,
+        default_args=dag_args,
         schedule_interval=schedule
     )
 
