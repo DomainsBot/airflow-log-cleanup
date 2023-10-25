@@ -2,8 +2,8 @@ from datetime import timedelta
 import pathlib
 
 from airflow import DAG
-from airflow.utils import dates
 from airflow.operators.python import PythonOperator
+import pendulum
 
 from airflow_log_cleanup.tasks import cleanup_before_date
 
@@ -12,7 +12,7 @@ DEFAULT_ARGS = {
     'email_on_retry': False,
     'retries': 3,
     'retry_delay': timedelta(minutes=30),
-    'start_date': dates.days_ago(1)
+    'start_date': pendulum.today(tz="UTC").subtract(days=1)
 }
 
 
