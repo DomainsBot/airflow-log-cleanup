@@ -26,7 +26,7 @@ def create_dag(
     dag = DAG(
         dag_id='airflow_log_cleanup',
         default_args=dag_args,
-        schedule_interval=schedule
+        schedule=schedule
     )
 
     PythonOperator(
