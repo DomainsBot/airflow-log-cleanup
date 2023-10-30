@@ -1,9 +1,9 @@
-from datetime import timedelta
+from datetime import date, timedelta
 import pathlib
 
 from airflow import DAG
-from airflow.operators.python import PythonOperator
-import pendulum
+from airflow.utils import dates
+from airflow.operators.python_operator import PythonOperator
 
 from airflow_log_cleanup.tasks import cleanup_before_date
 
@@ -12,7 +12,7 @@ DEFAULT_ARGS = {
     'email_on_retry': False,
     'retries': 3,
     'retry_delay': timedelta(minutes=30),
-    'start_date': pendulum.today(tz="UTC").subtract(days=1)
+    'start_date': dates.days_ago(1)
 }
 
 
@@ -25,8 +25,8 @@ def create_dag(
 ):
     dag = DAG(
         dag_id='airflow_log_cleanup',
-        default_args=dag_args,
-        schedule=schedule
+        default_args=DEFAULT_ARGS,
+        schedule_interval=schedule
     )
 
     PythonOperator(
